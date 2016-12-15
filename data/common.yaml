@@ -1,0 +1,7 @@
+# sysstat/data/common
+---
+sysstat::conf_path: /etc/sysconfig/sysstat
+sysstat::cron_path: /etc/cron.d/sysstat
+sysstat::sa1_path: /usr/lib64/sa/sa1
+sysstat::sa2_path: /usr/lib64/sa/sa2
+sysstat::package: sysstat

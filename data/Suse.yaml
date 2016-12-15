@@ -1,0 +1,3 @@
+# sysstat/data/common
+---
+sysstat::conf_path: /etc/sysstat/sysstat
