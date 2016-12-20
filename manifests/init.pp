@@ -26,13 +26,17 @@ class packages {
 
   # Make sure we don't try to remove any we have tried to add
   $pkg_to_remove = $list_remove - $list_add
-  Package { $pkg_to_remove:
-    ensure => absent,
+  unless empty( $pkg_to_remove ){
+    Package { $pkg_to_remove:
+      ensure => absent,
+    }
   }
 
   $pkgs_to_add = $list_add
-  Package { $pkgs_to_add:
-    ensure => installed,
+  unless empty( $pkgs_to_add ){
+    Package { $pkgs_to_add:
+      ensure => installed,
+    }
   }
 
 
