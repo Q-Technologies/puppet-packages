@@ -16,26 +16,39 @@ class packages {
   $pkg_remove = hiera_hash('packages::remove', [])
   $pkg_add = hiera_hash('packages::add',[])
 
-  $list_kernel_add = any2array( $pkg_add[$facts[kernel]] )
-  $list_osfamily_add = any2array( $pkg_add[$facts[osfamily]] )
-  $list_kernel_rm = any2array( $pkg_remove[$facts[kernel]] )
-  $list_osfamily_rm = any2array( $pkg_remove[$facts[osfamily]] )
+  $list_kernel_add = $pkg_add[$facts[kernel]]
+  $list_osfamily_add = $pkg_add[$facts[osfamily]]
+  $list_kernel_rm = $pkg_remove[$facts[kernel]]
+  $list_osfamily_rm =  $pkg_remove[$facts[osfamily]]
 
-  $list_add = $list_kernel_add + $list_osfamily_add
-  $list_remove = $list_kernel_rm + $list_osfamily_rm
+  if $list_osfamily_add {
+    $list_add = any2array($list_kernel_add)
+  } else {
+    $list_add = any2array($list_kernel_add) + any2array($list_osfamily_add)
+  }
+
+  if $list_osfamily_rm {
+    $list_remove = any2array($list_kernel_rm) + any2array($list_osfamily_rm)
+  } else {
+    $list_remove = any2array($list_kernel_rm)
+  }
 
   # Make sure we don't try to remove any we have tried to add
   $pkg_to_remove = $list_remove - $list_add
-  unless empty( $pkg_to_remove ){
-    Package { $pkg_to_remove:
-      ensure => absent,
+  $pkg_to_remove.each | $pkg | {
+    if $pkg != "" {
+      Package { $pkg:
+        ensure => absent,
+      }
     }
   }
 
   $pkgs_to_add = $list_add
-  unless empty( $pkgs_to_add ){
-    Package { $pkgs_to_add:
-      ensure => installed,
+  $pkgs_to_add.each | $pkg | {
+    if $pkg != "" {
+      Package { $pkg:
+        ensure => installed,
+      }
     }
   }
 
