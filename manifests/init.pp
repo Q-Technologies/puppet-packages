@@ -22,9 +22,9 @@ class packages {
   $list_osfamily_rm =  $pkg_remove[$facts[osfamily]]
 
   if $list_osfamily_add {
-    $list_add = any2array($list_kernel_add)
-  } else {
     $list_add = any2array($list_kernel_add) + any2array($list_osfamily_add)
+  } else {
+    $list_add = any2array($list_kernel_add)
   }
 
   if $list_osfamily_rm {
