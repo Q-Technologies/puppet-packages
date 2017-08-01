@@ -1,6 +1,6 @@
 {
   "name": "qtechnologies/packages",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Q-Technologies",
   "summary": "Puppet module to manage the easy installation of packages across hiera",
   "license": "Apache-2.0",
@@ -8,7 +8,9 @@
   "source": "https://github.com/Q-Technologies/puppet-packages.git",
   "project_page": "https://github.com/Q-Technologies/puppet-packages",
   "issues_url": "https://github.com/Q-Technologies/puppet-packages/issues",
-  "dependencies": [],
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 4.14.0"}
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem":"Darwin",
