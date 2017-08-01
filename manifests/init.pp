@@ -1,14 +1,15 @@
+# packages - class to easily manage lists of packages
 class packages {
 
   include stdlib
 
   #$packages = [ 'git' ]
 
-  if $kernel == "Darwin" {
+  if $facts['kernel'] == 'Darwin' {
     Package { provider => 'macports' }
   }
 
-  if $osfamily == "Suse" {
+  if $facts['os']['family'] == 'Suse' {
     Package { provider => 'zypper' }
   }
 
@@ -38,7 +39,7 @@ class packages {
   # Make sure we don't try to remove any we have tried to add
   $pkg_to_remove = $list_remove - $list_add
   $pkg_to_remove.each | $pkg | {
-    if $pkg != "" {
+    if $pkg != '' {
       Package { $pkg:
         ensure => absent,
       }
@@ -47,9 +48,15 @@ class packages {
 
   $pkgs_to_add = $list_add
   $pkgs_to_add.each | $pkg | {
-    if $pkg != "" {
-      Package { $pkg:
-        ensure => installed,
+    if $pkg != '' {
+      if $pkg =~ Array {
+        Package { $pkg[0]:
+          ensure => $pkg[1],
+        }
+      } else {
+        Package { $pkg:
+          ensure => installed,
+        }
       }
     }
   }
