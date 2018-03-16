@@ -13,9 +13,9 @@ class packages {
     Package { provider => 'zypper' }
   }
 
-  # Populate using hiera_hash command as we want to merge data from multiple hiera configs
-  $pkg_remove = hiera_hash('packages::remove', {})
-  $pkg_add = hiera_hash('packages::add',{})
+  # Populate using lookup command as we want to merge data from multiple hiera configs
+  $pkg_remove = lookup('packages::remove', Data, 'deep',  {})
+  $pkg_add = lookup('packages::add', Data, 'deep', {})
 
   # get a list of packages from each subgroup from hiera
   $list_kernel_add = $pkg_add[$facts[kernel]]

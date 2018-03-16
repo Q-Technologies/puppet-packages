@@ -1,6 +1,6 @@
 {
   "name": "qtechnologies/packages",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "Q-Technologies",
   "summary": "Puppet module to manage the easy installation of packages across hiera",
   "license": "Apache-2.0",
@@ -34,12 +34,11 @@
     },
     {
       "operatingsystem": "SLES",
-      "operatingsystemrelease": [ 
+      "operatingsystemrelease": [
         "11",
         "12"
      ]
     }
-  ],
-  "data_provider": "hiera"
+  ]
 }
 
