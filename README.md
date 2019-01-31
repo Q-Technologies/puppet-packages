@@ -2,8 +2,15 @@
 
 #### Table of Contents
 
-1. [Description](#description)
-1. [Instructions](#instructions)
+<!-- vim-markdown-toc GFM -->
+
+* [Description](#description)
+  * [Assumptions](#assumptions)
+  * [Limitations](#limitations)
+* [Instructions](#instructions)
+* [Issues](#issues)
+
+<!-- vim-markdown-toc -->
 
 ## Description
 
@@ -14,10 +21,15 @@ type, while more unique packages can be listed by the OS family.
 By default, the listed items are interpreted as package name and Puppet will just make sure they are installed (i.e. version is not managed).  To
 manage the version provide an array of Strings instead of a just a String.  The first element will be interpreted as the package name and the second
 argument is the version to match (this is just passed through to the Puppet package resource, so 'latest' can also be specified.
+
+Additionally, packages can be put into an ignore group.  This is most helpful when you generally want to manage a package, but you don't want to in a specific role
+because it uses a class that already manages that package.
+
 ### Assumptions
 
   * it set Macports as the package provider for OSX 
   * it set Zypper as the package provider for Suse systems 
+  * it uses the default for other platforms
 
 ### Limitations
 Specifying a specific version may be troublesome if you are managing operating systems at different major versions as there is no way to differentiate for each OS 
@@ -80,6 +92,10 @@ packages::add:
 packages::remove:
   Linux:
     - pdsh
+
+packages::remove:
+  Linux:
+    - openssh-server
 
 ```
 
