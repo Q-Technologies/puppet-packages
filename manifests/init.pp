@@ -46,7 +46,7 @@ class packages {
   }
 
   # Make sure we don't try to remove any we have tried to add
-  $pkg_to_remove = $list_remove - $list_add - $list_ignore
+  $pkg_to_remove = unique( $list_remove - $list_add - $list_ignore )
   $pkg_to_remove.each | $pkg | {
     if $pkg != '' {
       Package { $pkg:
@@ -55,7 +55,7 @@ class packages {
     }
   }
 
-  $pkgs_to_add = $list_add - $list_ignore
+  $pkgs_to_add = unique( $list_add - $list_ignore )
   $pkgs_to_add.each | $pkg | {
     if $pkg != '' {
       if $pkg =~ Array {
