@@ -1,17 +1,11 @@
 # packages - class to easily manage lists of packages
-class packages {
+class packages(
+  String $provider, 
+){
 
   include stdlib
 
-  #$packages = [ 'git' ]
-
-  if $facts['kernel'] == 'Darwin' {
-    Package { provider => 'macports' }
-  }
-
-  if $facts['os']['family'] == 'Suse' {
-    Package { provider => 'zypper' }
-  }
+  Package { provider => $provider }
 
   # Populate using lookup command as we want to merge data from multiple hiera configs
   $pkg_remove = lookup('packages::remove', Data, 'deep',  {})

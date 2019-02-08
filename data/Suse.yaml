@@ -1,3 +1,2 @@
-# sysstat/data/common
 ---
-sysstat::conf_path: /etc/sysstat/sysstat
+packages::provider: zypper
