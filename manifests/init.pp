@@ -1,6 +1,6 @@
 # packages - class to easily manage lists of packages
 class packages(
-  String $provider, 
+  String $provider,
 ){
 
   include stdlib
