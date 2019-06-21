@@ -22,21 +22,21 @@ class packages(
 
   # Merge these lists into one array
   if $list_osfamily_add {
-    $list_add = any2array($list_kernel_add) + any2array($list_osfamily_add)
+    $list_add = unique(any2array($list_kernel_add) + any2array($list_osfamily_add))
   } else {
-    $list_add = any2array($list_kernel_add)
+    $list_add = unique(any2array($list_kernel_add))
   }
 
   if $list_osfamily_rm {
-    $list_remove = any2array($list_kernel_rm) + any2array($list_osfamily_rm)
+    $list_remove = unique(any2array($list_kernel_rm) + any2array($list_osfamily_rm))
   } else {
-    $list_remove = any2array($list_kernel_rm)
+    $list_remove = unique(any2array($list_kernel_rm))
   }
 
   if $list_osfamily_ig {
-    $list_ignore = any2array($list_kernel_ig) + any2array($list_osfamily_ig)
+    $list_ignore = unique(any2array($list_kernel_ig) + any2array($list_osfamily_ig))
   } else {
-    $list_ignore = any2array($list_kernel_ig)
+    $list_ignore = unique(any2array($list_kernel_ig))
   }
 
   # Make sure we don't try to remove any we have tried to add
