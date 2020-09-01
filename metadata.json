@@ -1,6 +1,6 @@
 {
   "name": "qtechnologies-packages",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "Q-Technologies",
   "summary": "Puppet module to manage the easy installation of packages across hiera",
   "license": "Apache-2.0",
