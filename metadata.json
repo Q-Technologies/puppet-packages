@@ -1,6 +1,6 @@
 {
   "name": "qtechnologies-packages",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Q-Technologies",
   "summary": "Puppet module to manage the easy installation of packages across hiera",
   "license": "Apache-2.0",
@@ -45,7 +45,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.7.0 < 7.0.0"
+      "version_requirement": ">= 4.7.0 < 8.0.0"
     }
   ],
   "tags": [
@@ -55,7 +55,7 @@
     "deb",
     "macports"
   ],
-  "pdk-version": "1.18.1",
-  "template-url": "pdk-default#1.18.1",
-  "template-ref": "tags/1.18.1-0-g3d2e75c"
+  "pdk-version": "2.4.0",
+  "template-url": "pdk-default#2.4.0",
+  "template-ref": "tags/2.4.0-0-gfa6b6d2"
 }
