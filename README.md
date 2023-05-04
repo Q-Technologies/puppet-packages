@@ -93,7 +93,7 @@ packages::remove:
   Linux:
     - pdsh
 
-packages::remove:
+packages::ignore:
   Linux:
     - openssh-server
 
