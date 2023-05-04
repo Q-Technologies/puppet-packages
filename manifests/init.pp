@@ -1,8 +1,7 @@
 # packages - class to easily manage lists of packages
-class packages(
+class packages (
   String $provider,
-){
-
+) {
   include stdlib
 
   Package { provider => $provider }
@@ -63,7 +62,4 @@ class packages(
       }
     }
   }
-
-
-
 }
