@@ -1,5 +1,8 @@
-# packages - class to easily manage lists of packages
+# @packages class to easily manage lists of packages
+#
+# @param provider - the package provider to use (sourced from internal hiera normally)
 class packages (
+  # Class parameters
   String $provider,
 ) {
   include stdlib
@@ -7,7 +10,7 @@ class packages (
   Package { provider => $provider }
 
   # Populate using lookup command as we want to merge data from multiple hiera configs
-  $pkg_remove = lookup('packages::remove', Data, 'deep',  {})
+  $pkg_remove = lookup('packages::remove', Data, 'deep', {})
   $pkg_add = lookup('packages::add', Data, 'deep', {})
   $pkg_ignore = lookup('packages::ignore', Data, 'deep', {})
 
